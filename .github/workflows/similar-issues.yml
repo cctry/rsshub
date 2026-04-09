@@ -12,6 +12,7 @@ on:
 
 jobs:
     check-duplicates:
+        if: github.repository_owner == 'DIYgod'
         runs-on: ubuntu-latest
         permissions:
             contents: read

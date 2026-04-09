@@ -7,7 +7,7 @@ on:
 jobs:
     rebase:
         name: Automatic Rebase
-        if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/rebase') && github.event.comment.author_association == 'COLLABORATOR'
+        if: github.repository_owner == 'DIYgod' && github.event.issue.pull_request != '' && contains(github.event.comment.body, '/rebase') && github.event.comment.author_association == 'COLLABORATOR'
         runs-on: ubuntu-slim
         timeout-minutes: 5
         permissions:
@@ -25,7 +25,7 @@ jobs:
 
     self-assign:
         name: Self Assign
-        if: ${{ !github.event.issue.pull_request && startsWith(github.event.comment.body, '/wip') }}
+        if: ${{ github.repository_owner == 'DIYgod' && !github.event.issue.pull_request && startsWith(github.event.comment.body, '/wip') }}
         runs-on: ubuntu-slim
         timeout-minutes: 5
         permissions:
@@ -38,7 +38,7 @@ jobs:
 
     test-on-demand:
         name: Test route on demand
-        if: startsWith(github.event.comment.body, '/test')
+        if: github.repository_owner == 'DIYgod' && startsWith(github.event.comment.body, '/test')
         runs-on: ubuntu-latest
         timeout-minutes: 5
         permissions:

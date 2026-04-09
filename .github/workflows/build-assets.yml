@@ -11,6 +11,7 @@ on:
 
 jobs:
     build:
+        if: github.repository_owner == 'DIYgod'
         runs-on: ubuntu-slim
         name: Build assets
         timeout-minutes: 10
